@@ -3,7 +3,7 @@
 
 ![embedded-federated-vision diagram](_static/embedded_federated_vision.jpg)
 
-This repository contains the code used to benchmark several old and new vision models for image classification on the Raspberry Pi. Why do this? Embedded devices such as Raspberry Pi and alike have sufficient computing power to collaboratively train a wide range of vision models (so long memory peak is kept under control). You can read the blog post motivating this idea: [Raspberry Pi 5: Ready for Federated Vision](https://flower.dev/blog/2023-12-06-raspberrypi-is-ready-for-fl/).
+This repository contains the code used to benchmark several old and new vision models for image classification on the Raspberry Pi. Why do this? Embedded devices such as Raspberry Pi and alike have sufficient computing power to collaboratively train a wide range of vision models (so long memory peak is kept under control). You can read the blog post motivating this idea: [Raspberry Pi 5: Ready for Federated Vision](https://flower.dev/blog/2023-12-07-raspberrypi-is-ready-for-fl/).
 
 The benchmark can be run on any Python environment for which PyTorch has support for. This means you can run it on your M2 Mac, your Linux workstation with NVIDIA GPUs, or your Raspberry Pi. This benchmark will evolve over time. Contributions are welcome.
 
@@ -94,7 +94,7 @@ python main.py dataset.prepare.batch_size=32
 ```
 Results are appended to a Pandas DataFrame once a model gets benchmarked. These results are also logged.
 
-However, the benchmark ran to generate the results in the [blog post](https://flower.dev/blog/2023-12-06-raspberrypi-is-ready-for-fl/), used instead the command below. We used 20 batches for each task. We also loaded (randomly generated) images from the file system using the standard [`ImageFolder`](https://pytorch.org/vision/stable/generated/torchvision.datasets.ImageFolder.html) class. Some models are commented in `conf/base.yaml`. This is because the memory peak at training time exceeds 8GB (max available RAM on the Raspberry Pi) unless the batch size is reduced from 16 images.
+However, the benchmark ran to generate the results in the [blog post](https://flower.dev/blog/2023-12-07-raspberrypi-is-ready-for-fl/), used instead the command below. We used 20 batches for each task. We also loaded (randomly generated) images from the file system using the standard [`ImageFolder`](https://pytorch.org/vision/stable/generated/torchvision.datasets.ImageFolder.html) class. Some models are commented in `conf/base.yaml`. This is because the memory peak at training time exceeds 8GB (max available RAM on the Raspberry Pi) unless the batch size is reduced from 16 images.
 
 ```bash
 python main.py job.max_steps=20 dataset_fs=in_fs
