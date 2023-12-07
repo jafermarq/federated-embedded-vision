@@ -20,7 +20,8 @@ These are the steps followed to get things ready to run the benchmark.
 
 ```bash
 sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install build-essential libgl1 zlib1g-dev libssl-dev libsqlite3-dev libreadline-dev libbz2-dev libffi-dev liblzma-dev
+sudo apt-get install build-essential libgl1 zlib1g-dev libssl-dev \
+     libsqlite3-dev libreadline-dev libbz2-dev libffi-dev liblzma-dev
 
 # Install pyenv
 # More context here: https://github.com/pyenv/pyenv#basic-github-checkout
@@ -29,6 +30,7 @@ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+source ~/.bashrc
 
 # Install a modern version of python (3.8+)
 pyenv install 3.9.17
@@ -45,6 +47,8 @@ pyenv virtualenv 3.9.17 embedded-fl-vision
 
 # Activate your environment
 pyenv activate embedded-fl-vision
+
+# Clone this repo and cd into it
 
 # Finally, install all packages
 pip install -r requirements.txt
