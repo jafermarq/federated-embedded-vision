@@ -65,14 +65,15 @@ Then, launch several clients (you'll need at least two). The CIFAR-10 dataset wi
 
 ```bash
 python client.py node_id=0
-# open a new terminal and launch other clients using a different node_id so they access a different data partition
+# open a new terminal and launch other clients using
+# a different node_id so they access a different data partition
 ```
 
 
 If you want to run a different model you could do so by overriding the `model` config keyword:
 
 ```bash
-python client.py node_id=<NODE-ID> model=fastvit_t8 # or any of the filenames (without extension) in conf/model
+python client.py node_id=<NODE-ID> model=fastvit_t8 # or any of the filenames in conf/model
 ```
 
 
