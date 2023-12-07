@@ -1,0 +1,15 @@
+---
+vgg11:
+  stats:
+    parameters: 132.9 # million
+    gmacs: 7.6
+    top1: 69.02 # from timm results-imagenet.csv
+    top5: 88.62
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: vgg11
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.fc.weight,
+                    model.head.fc.bias]

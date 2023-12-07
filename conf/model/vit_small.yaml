@@ -1,0 +1,14 @@
+---
+vit_small:
+  stats:
+    parameters: 21.7 # million
+    gmacs: 4.3
+    top1: 78.85 # from timm results-imagenet.csv
+    top5: 94.29
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: vit_small_patch16_224.augreg_in1k
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.weight, model.head.bias]

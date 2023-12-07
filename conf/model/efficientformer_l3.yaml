@@ -1,0 +1,19 @@
+---
+efficientformer_l3:
+  stats:
+    parameters: 31.4 # million
+    gmacs: 3.9
+    top1: 82.57
+    top5: 96.24
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: efficientformer_l3
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.norm.weight,
+                    model.norm.bias,
+                    model.head.weight,
+                    model.head.bias,
+                    model.head_dist.weight,
+                    model.head_dist.bias]

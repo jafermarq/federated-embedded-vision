@@ -1,0 +1,26 @@
+[build-system]
+requires = ["poetry-core>=1.4.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "eflbench"
+version = "0.1.0"
+description = "Embedded Federated Vision"
+authors = ["Javier <javier@flower.dev>", "jafermarq <jafermarq@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+torch = "1.13.1"
+torchvision = "0.14.1"
+hydra-core = "1.3.2"
+pandas = "2.1.3"
+timm = "0.9.10"
+tqdm = "4.66.1"
+opencv-python = "4.8.1.78"
+jupyter = "1.0.0"
+matplotlib = "3.8.2"
+seaborn = "0.13.0"
+fastervit = "0.9.8"
+flwr = "1.6.0"
+flwr-datasets = {extras = ["vision"], version = "0.0.2"}
+datasets = "2.15.0"

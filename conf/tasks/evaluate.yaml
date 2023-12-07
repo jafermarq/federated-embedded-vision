@@ -1,0 +1,6 @@
+---
+evaluate:
+  _target_: eflbench.jobs.evaluate
+  device: ${device}
+  criterion: ${job.criterion}
+  max_steps: ${job.max_steps}

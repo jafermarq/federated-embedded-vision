@@ -1,0 +1,14 @@
+---
+
+defaults:
+  - _self_
+  - model: vit_tiny
+
+node_id: ??? # [0-9] (expand after you edit NUM_CLIENTS in client.py)
+finetune: true # if true clients finetune the classification head of the model; else, the whole model is trained.
+
+dataset:
+  num_classes: 10 # we'll be using CIFAR-10
+  val_ratio: 0.2
+  train_batch: 16
+  val_batch: 16

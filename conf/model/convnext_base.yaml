@@ -1,0 +1,17 @@
+---
+convnext_base:
+  stats:
+    parameters: 88.6 # million
+    gmacs: 15.4
+    top1: 85.82
+    top5: 97.87
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: convnext_base.fb_in22k_ft_in1k
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.norm.weight,
+                    model.head.norm.bias,
+                    model.head.fc.weight,
+                    model.head.fc.bias]

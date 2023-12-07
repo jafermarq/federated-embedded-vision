@@ -1,0 +1,18 @@
+---
+inception_next_small:
+  stats:
+    parameters: 49.4 # million
+    gmacs: 8.4
+    top1: 83.5 # from repo
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model      
+      model_name: inception_next_small
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.fc1.weight,
+                    model.head.fc1.bias,
+                    model.head.norm.weight,
+                    model.head.norm.bias,
+                    model.head.fc2.weight,
+                    model.head.fc2.bias]

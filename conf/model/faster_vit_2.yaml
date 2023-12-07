@@ -1,0 +1,17 @@
+---
+faster_vit_2:
+  stats:
+    parameters: 75.9 # million
+    gmacs: 17.4 # reported as 8.7GFLOPs
+    top1: 84.2
+    top5: 96.8
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: fastervit.create_model
+      model_name: faster_vit_2_224
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.norm.weight,
+                    model.norm.bias,
+                    model.head.weight,
+                    model.head.bias]

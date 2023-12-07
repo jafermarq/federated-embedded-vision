@@ -1,0 +1,5 @@
+---
+_target_: eflbench.dataset.get_inmemory_dummy_dataset
+num_images: ${dataset.num_images}
+input_shape: ${dataset.input_shape}
+num_classes: ${dataset.num_classes}

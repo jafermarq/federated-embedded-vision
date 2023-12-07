@@ -1,0 +1,6 @@
+---
+_target_: eflbench.dataset.get_infs_dummy_dataset
+num_images: ${dataset.num_images}
+input_shape: ${dataset.input_shape}
+path_to_data: dummy_fs_data/
+num_classes: ${dataset.num_classes}

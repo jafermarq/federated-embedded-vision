@@ -1,0 +1,19 @@
+---
+maxvit_tiny:
+  stats:
+    parameters: 30.9 # million
+    gmacs: 5.6
+    top1: 83.40 # from timm results-imagenet.csv
+    top5: 96.59
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: maxvit_tiny_tf_224
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.norm.weight,
+                    model.head.norm.bias,
+                    model.head.pre_logits.fc.weight,
+                    model.head.pre_logits.fc.bias,
+                    model.head.fc.weight,
+                    model.head.fc.bias]

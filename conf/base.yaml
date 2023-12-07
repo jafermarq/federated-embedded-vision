@@ -1,0 +1,99 @@
+---
+bench_name: embedded-federated-vision-v0.01
+device: cpu
+
+defaults:
+  - _self_
+  - model: # each config points to a file in conf/model/
+    - resnet18
+    - resnet34
+    - resnet50
+    - mobilenetv2_050
+    - mobilenetv2_100
+    - mobilenetv3_small_075
+    - mobilenetv3_small_100
+    - mobilenetv3_large_075
+    - mobilenetv3_large_100
+    - vit_tiny
+    - vit_small
+    - vit_base
+    - efficientvit_b0
+    - efficientvit_b1
+    - efficientvit_b2
+    - efficientvit_b3
+    - mobilevitv2_050
+    - mobilevitv2_100
+    - mobilevitv2_200
+    - fastvit_t8
+    - fastvit_t12
+    - convnext_tiny
+    - convnext_small
+    - convnext_base
+    - deit_tiny
+    - deit_small
+    - deit_base
+    - edgenext_x_small
+    - edgenext_small
+    - edgenext_base
+    # - efficientnet_b0
+    - efficientnet_b1
+    - efficientnet_b2
+    - efficientnet_b3
+    - maxvit_tiny
+    # - maxvit_small
+    # - maxvit_base
+    - swin_tiny
+    - swin_small
+    - inception_next_tiny
+    - inception_next_small
+    # - inception_next_base
+    - mlpmixer_b16
+    # - vgg11
+    # - vgg16
+    - faster_vit_0
+    - faster_vit_1
+    - faster_vit_2
+    - faster_vit_3
+    - efficientformer_l1
+    - efficientformer_l3
+    # - efficientformer_l7
+    - mnasnet_050
+    - mnasnet_075
+    - mnasnet_100
+    - ghostnetv2_100
+    - ghostnetv2_130
+    - ghostnetv2_160
+
+  - dataset_fn: in_memory # points to a file in conf/dataset_fn/
+  - tasks: # points to files in conf/tasks/
+    # - evaluate
+    - finetune
+    - train
+
+# used to construct the dataset and dataloaders
+dataset:
+  num_classes: 1000
+  num_images: 1000
+  input_shape: [3,224,224]
+  prepare:
+    _target_: eflbench.dataset.get_simple_dataloader
+    _recursive_: false
+    get_dataset_fn: ${dataset_fn}
+    batch_size: 16
+    num_workers: 0
+
+# Tasks have some settings in common, this is what the job node is for
+job:
+  max_steps: 50 # number of train/val/finetune steps before break
+  do_warmup: false
+  criterion:
+    _target_: torch.nn.CrossEntropyLoss
+  optim:
+    _target_: torch.optim.SGD
+    lr: 0.1
+  warmup: ${tasks.evaluate}
+  tasks: ${tasks}
+
+hydra:
+  run:
+    dir: ./benchmarks/${now:%Y-%m-%d}/${now:%H-%M-%S}

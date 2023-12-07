@@ -1,0 +1,16 @@
+---
+mobilenetv3_large_075:
+  stats:
+    parameters: 4.0 # million
+    gmacs: 0.12
+    top1: 73.3
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: mobilenetv3_large_075
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.conv_head.weight,
+                    model.conv_head.bias,
+                    model.classifier.weight,
+                    model.classifier.bias]

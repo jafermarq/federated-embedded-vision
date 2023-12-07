@@ -1,0 +1,21 @@
+---
+efficientvit_b0:
+  stats:
+    parameters: 3.4 # M
+    gmacs: 0.1
+    # top1:  # never reported?
+    # top5: # never reported?
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: efficientvit_b0.r224_in1k
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.in_conv.conv.weight,
+                    model.head.in_conv.norm.weight,
+                    model.head.in_conv.norm.bias,
+                    model.head.classifier.0.weight,
+                    model.head.classifier.1.weight,
+                    model.head.classifier.1.bias,
+                    model.head.classifier.4.weight,
+                    model.head.classifier.4.bias]

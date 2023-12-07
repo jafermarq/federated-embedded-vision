@@ -1,0 +1,17 @@
+---
+swin_tiny:
+  stats:
+    parameters: 44.3 # million
+    gmacs: 4.5
+    top1: 81.38 # from timm results-imagenet.csv
+    top5: 95.54
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: swin_tiny_patch4_window7_224
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.norm.weight,
+                    model.norm.bias,
+                    model.head.fc.weight,
+                    model.head.fc.bias]

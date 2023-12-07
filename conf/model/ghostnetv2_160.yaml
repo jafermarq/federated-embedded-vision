@@ -1,0 +1,17 @@
+---
+ghostnetv2_160:
+  stats:
+    parameters: 12.4 # million
+    gmacs: 0.4
+    top1: 77.83
+    top5: 93.94
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: ghostnetv2_160
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.conv_head.weight,
+                    model.conv_head.bias,
+                    model.classifier.weight,
+                    model.classifier.bias]

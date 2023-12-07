@@ -1,0 +1,15 @@
+---
+mlpmixer_b16:
+  stats:
+    parameters: 67.7 # million
+    gmacs: 12.6
+    top1: 82.31 # finetuned from 21k
+    top5: 95.72
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: mixer_b16_224
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.weight,
+                    model.head.bias,]

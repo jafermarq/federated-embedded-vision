@@ -1,0 +1,14 @@
+---
+resnet50:
+  stats:
+    parameters: 35.6 # million
+    gmacs: 4.1
+    top1: 78.05 # from timm results.csv (lower end -- there are many resnet50)
+    top5: 93.78
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: resnet50
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.fc.weight, model.fc.bias]

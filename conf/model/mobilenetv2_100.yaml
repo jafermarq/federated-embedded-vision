@@ -1,0 +1,14 @@
+---
+mobilenetv2_100:
+  stats:
+    parameters: 6.1 # million
+    gmacs: 0.6
+    top1: 72.97  # from timm results-imagenet.csv
+    top5: 91.02
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: mobilenetv2_100
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.classifier.weight, model.classifier.bias]

@@ -1,0 +1,14 @@
+---
+resnet18:
+  stats:
+    parameters: 11.7 # million
+    gmacs: 1.8
+    top1: 69.76
+    top5: 89.07
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: resnet18
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.fc.weight, model.fc.bias]

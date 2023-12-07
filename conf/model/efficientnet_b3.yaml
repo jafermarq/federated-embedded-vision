@@ -1,0 +1,15 @@
+---
+efficientnet_b3:
+  stats:
+    parameters: 12.2 # million
+    gmacs: 1.6
+    top1: 81.6
+    top5: 95.7
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: efficientnet_b3
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.classifier.weight,
+                    model.classifier.bias]

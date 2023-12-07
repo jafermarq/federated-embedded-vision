@@ -1,0 +1,14 @@
+---
+vit_base:
+  stats:
+    parameters: 85.8 # million
+    gmacs: 16.9
+    top1: 79.15 # from timm results-imagenet.csv (with better training it can go to 84+)
+    top5: 94.09
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: vit_base_patch16_224.augreg_in1k
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.weight, model.head.bias]

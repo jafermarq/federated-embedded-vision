@@ -1,0 +1,14 @@
+---
+fastvit_t8:
+  stats:
+    parameters: 4.0 # million
+    gmacs: 0.7
+    top1: 77.2
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: fastvit_t8.apple_in1k
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.fc.weight,
+                    model.head.fc.bias]

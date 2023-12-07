@@ -1,0 +1,18 @@
+---
+inception_next_base:
+  stats:
+    parameters: 86.7 # million
+    gmacs: 14.9
+    top1: 84.0 # from repo
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: inception_next_base
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.fc1.weight,
+                    model.head.fc1.bias,
+                    model.head.norm.weight,
+                    model.head.norm.bias,
+                    model.head.fc2.weight,
+                    model.head.fc2.bias]

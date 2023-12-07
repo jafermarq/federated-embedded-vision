@@ -1,0 +1,16 @@
+---
+edgenext_base:
+  stats:
+    parameters: 18.5 # million
+    gmacs: 3.8 # for 256x256 inputs
+    top1: 82.47 # from paper
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: edgenext_base
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.norm.weight,
+                    model.head.norm.bias,
+                    model.head.fc.weight,
+                    model.head.fc.bias]

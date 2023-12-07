@@ -1,0 +1,16 @@
+---
+deit_tiny:
+  stats:
+    parameters: 5.7 # million
+    gmacs: 1.3
+    top1: 76.6  # from paper 
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model      
+      model_name: deit_tiny_patch16_224
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.norm.weight,
+                    model.norm.bias,
+                    model.head.weight,
+                    model.head.bias]

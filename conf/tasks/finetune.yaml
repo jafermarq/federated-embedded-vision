@@ -1,0 +1,8 @@
+---
+finetune:
+  _target_: eflbench.jobs.finetune
+  _recursive_: false
+  device: ${device}
+  criterion: ${job.criterion}
+  optim: ${job.optim}
+  max_steps: ${job.max_steps}

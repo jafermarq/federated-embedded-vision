@@ -1,0 +1,19 @@
+---
+maxvit_base:
+  stats:
+    parameters: 119.5 # million
+    gmacs: 24.0
+    top1: 84.86  # from timm results-imagenet.csv
+    top5: 96.99
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: maxvit_base_tf_224
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.norm.weight,
+                    model.head.norm.bias,
+                    model.head.pre_logits.fc.weight,
+                    model.head.pre_logits.fc.bias,
+                    model.head.fc.weight,
+                    model.head.fc.bias]

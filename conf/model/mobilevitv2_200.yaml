@@ -1,0 +1,13 @@
+---
+mobilevitv2_200:
+  stats:
+    parameters: 18.4 # million
+    gmacs: 7.2 # image size 256x256
+    top1: 81.2 # from paper
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: mobilevitv2_200
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.fc.weight, model.head.fc.bias]

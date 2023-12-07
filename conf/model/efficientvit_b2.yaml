@@ -1,0 +1,21 @@
+---
+efficientvit_b2:
+  stats:
+    parameters: 24.3 # M
+    gmacs: 1.6
+    top1: 82.10 # from table in repo
+    top5: 95.78
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: efficientvit_b2.r224_in1k
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.head.in_conv.conv.weight,
+                    model.head.in_conv.norm.weight,
+                    model.head.in_conv.norm.bias,
+                    model.head.classifier.0.weight,
+                    model.head.classifier.1.weight,
+                    model.head.classifier.1.bias,
+                    model.head.classifier.4.weight,
+                    model.head.classifier.4.bias]

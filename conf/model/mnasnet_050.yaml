@@ -1,0 +1,14 @@
+---
+mnasnet_050:
+  stats:
+    parameters: 2.2 # million
+    gmacs: 0.1
+    top1: 67.73 # from https://pytorch.org/vision/main/models.html
+    top5: 87.49
+  model:
+    _target_: eflbench.models.BenchModel
+    build:
+      _target_: timm.create_model
+      model_name: mnasnet_050
+      num_classes: ${dataset.num_classes}
+    finetune_keys: [model.classifier.weight, model.classifier.bias]
