@@ -12,11 +12,11 @@ import hydra
 from hydra.utils import call, instantiate
 from omegaconf import DictConfig, OmegaConf
 
-NUM_CLIENTS=5
+NUM_PARTITIONS = 5
 
 def load_data(node_id, data_cfg: DictConfig):
     """Load partition CIFAR100 data."""
-    fds = FederatedDataset(dataset="cifar10", partitioners={"train": NUM_CLIENTS})
+    fds = FederatedDataset(dataset="cifar10", partitioners={"train": NUM_PARTITIONS})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test
     partition_train_test = partition.train_test_split(test_size=data_cfg.val_ratio)

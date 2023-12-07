@@ -85,6 +85,9 @@ python client.py node_id=<NODE-ID> model=fastvit_t8 # or any of the filenames in
 
 Running the benchmark with default arguments will train and finetune all models listed in `conf/base.yaml` using `job.max_steps` batches. By default, an _in-memory_ dataset will be created by generating a small 1k-classes dataset à la ImageNet.
 
+![bar plot](_static/bar_plot.png)
+You can use the `plot.ipynb` notebook to generate the plot shown above. It will load the results in `results/blog`
+
 ```bash
 # Run with default arguments
 python main.py
