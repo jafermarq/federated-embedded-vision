@@ -9,6 +9,9 @@ The benchmark can be run on any Python environment for which PyTorch has support
 
 In addition to the benchmark itself, here you'll find how to very effortlessly take any of the models in the benchmark and start your own federated finetuning experiments. 
 
+> [!CAUTION]
+> The content in this repository was written a while ago using an old version of Flower. It is **highly recommended** that you follow the [up-to-data tutorial instead](https://github.com/adap/flower/tree/main/examples/embedded-devices)! 
+
 ## Setup
 
 The main packages that this repo uses are: [PyTorch](https://pytorch.org/), [timm](https://github.com/huggingface/pytorch-image-models), [Hydra](https://hydra.cc/) and [Flower](https://flower.dev/).
